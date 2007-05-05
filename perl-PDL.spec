@@ -1,7 +1,7 @@
 %define	module	PDL
 %define	name	perl-%{module}
-%define	version	2.4.2
-%define release	%mkrel 5
+%define	version	2.4.3
+%define release	%mkrel 1
 %define	epoch	1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
@@ -15,7 +15,6 @@ Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://search.cpan.org/dist/%{module}/
 Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{module}-%{version}.tar.bz2
 Source1:	PDL-convert-doc.pl.bz2
-Patch0:		PDL-nofftw.patch
 Patch1:		PDL-2.3.3-pic.patch
 Patch2:		PDL-2.4.0-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
@@ -57,7 +56,6 @@ This is the documentation package.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p0 -b .nofftw
 %patch1 -p1 -b .pic
 %patch2 -p1 -b .vendor
 %patch4 -p0 -b .gimp
