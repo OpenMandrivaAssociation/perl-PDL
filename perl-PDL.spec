@@ -19,7 +19,7 @@ Patch1:		PDL-2.3.3-pic.patch
 Patch2:		PDL-2.4.0-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
 Patch5:		PDL-2.4.2-makemakerfix.patch
-BuildRequires:	XFree86-devel gcc-gfortran ncurses-devel perl-devel MesaGLU-devel
+BuildRequires:	X11-devel gcc-gfortran ncurses-devel perl-devel MesaGLU-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
 BuildRequires:	libgsl-devel
 Obsoletes:	PDL
