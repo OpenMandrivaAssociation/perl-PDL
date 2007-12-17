@@ -11,7 +11,6 @@ Release:	%{release}
 Epoch:		%{epoch}
 License:	GPL
 Group:		Development/Perl
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://search.cpan.org/dist/%{module}/
 Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{module}-%{version}.tar.bz2
 Source1:	PDL-convert-doc.pl.bz2
