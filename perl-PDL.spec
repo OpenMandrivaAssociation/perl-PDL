@@ -1,7 +1,7 @@
 %define	module	PDL
 %define	name	perl-%{module}
 %define	version	2.4.3
-%define release	%mkrel 1
+%define release	%mkrel 2
 %define	epoch	1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
