@@ -1,11 +1,11 @@
 %define	module	PDL
 %define	name	perl-%{module}
 %define	version	2.4.4
-%define release	%mkrel 1
+%define release	%mkrel 2
 %define	epoch	1
 
 %define _provides_exceptions perl(Inline)
-%define _requires_exceptions perl(\\(PDL\\|PGPLOT\\))
+%define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\))
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
 Name:		%{name}
@@ -28,6 +28,22 @@ BuildRequires:	perl-devel
 BuildRequires:	MesaGLU-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
 BuildRequires:	libgsl-devel
+BuildRequires:	f2c-devel
+# mess installed files perms
+# http://rt.cpan.org/Ticket/Display.html?id=40976
+BuildConflicts: perl-ExtUtils-Install
+Provides:       perl(PDL::PP::CType)  
+Provides:       perl(PDL::PP::Dims)  
+Provides:       perl(PDL::PP::PDLCode)
+Provides:       perl(PDL::PP::SymTab)
+Provides:       perl(PDL::PP::XS)
+Provides:       perl(PDL::Config)
+Provides:       perl(PDL::Graphics::OpenGL)
+Provides:       perl(PDL::Graphics::OpenGLQ)
+Provides:       perl(PDL::Graphics::TriD::GL)
+Provides:       perl(PDL::Graphics::TriD::Objects)
+Provides:       perl(PDL::Lite)
+Provides:       perl(PDL::LiteF)
 Obsoletes:	PDL
 Provides:	PDL
 Buildroot:	%{_tmppath}/%{name}-%{version}
