@@ -1,9 +1,10 @@
 %define	module	PDL
 %define	name	perl-%{module}
 %define	version	2.4.4
-%define release	%mkrel 2
+%define release	%mkrel 3
 %define	epoch	1
 
+%define Werror_cflags %nil
 %define _provides_exceptions perl(Inline)
 %define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\))
 
@@ -17,8 +18,9 @@ Group:		Development/Perl
 URL:		http://search.cpan.org/dist/%{module}/
 Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{module}-%{version}.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
-Patch1:		PDL-2.3.3-pic.patch
-Patch2:		PDL-2.4.0-handle-INSTALLDIRS-vendor.patch
+Patch0:		PDL-2.4.4-fix-format-errors.patch
+Patch1:		PDL-2.4.4-fpic.patch
+Patch2:		PDL-2.4.4-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
 Patch5:		PDL-2.4.2-makemakerfix.patch
 BuildRequires:	X11-devel
@@ -79,14 +81,15 @@ This is the documentation package.
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p1 -b .format
 %patch1 -p1 -b .pic
 %patch2 -p1 -b .vendor
 %patch4 -p0 -b .gimp
 %patch5 -p0 -b .mm
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor PREFIX=%{_prefix}
-make OPTIMIZE="$RPM_OPT_FLAGS" PREFIX=%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS=vendor PREFIX=%{_prefix} OPTIMIZE="%{optflags}"
+make
 #DISPLAY="" make test
 
 # first generate blib/lib/PDL/pdldoc.db
