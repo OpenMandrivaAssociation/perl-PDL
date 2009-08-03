@@ -1,41 +1,43 @@
-%define	module	PDL
-%define	name	perl-%{module}
-%define	version	2.4.4
-%define release	%mkrel 3
-%define	epoch	1
+%define	upstream_name	 PDL
+%define	upstream_version 2.4.4
 
 %define Werror_cflags %nil
 %define _provides_exceptions perl(Inline)
 %define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\))
 
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 4
+Epoch:		1
+
 Summary:	PerlDL, an efficient numerical language for scientific computing
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Epoch:		%{epoch}
 License:	GPL
 Group:		Development/Perl
-URL:		http://search.cpan.org/dist/%{module}/
-Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{module}-%{version}.tar.gz
+Url:		http://search.cpan.org/dist/%{upstream_name}/
+Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{upstream_name}-%{upstream_version}.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
 Patch0:		PDL-2.4.4-fix-format-errors.patch
 Patch1:		PDL-2.4.4-fpic.patch
 Patch2:		PDL-2.4.4-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
 Patch5:		PDL-2.4.2-makemakerfix.patch
-BuildRequires:	X11-devel
+
 BuildRequires:	gcc-gfortran
+BuildRequires:	libgsl-devel
+BuildRequires:	MesaGLU-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	perl-devel
-BuildRequires:	MesaGLU-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
-BuildRequires:	libgsl-devel
+BuildRequires:	X11-devel
 # mess installed files perms
 # http://rt.cpan.org/Ticket/Display.html?id=40976
 BuildConflicts: perl-ExtUtils-Install
 # if installed, requires f2c-devel,
 # but it is a contrib package
 BuildConflicts: f2c
+
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}
+
 Provides:       perl(PDL::PP::CType)  
 Provides:       perl(PDL::PP::Dims)  
 Provides:       perl(PDL::PP::PDLCode)
@@ -48,9 +50,9 @@ Provides:       perl(PDL::Graphics::TriD::GL)
 Provides:       perl(PDL::Graphics::TriD::Objects)
 Provides:       perl(PDL::Lite)
 Provides:       perl(PDL::LiteF)
+
 Obsoletes:	PDL
 Provides:	PDL
-Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %package	doc
 Summary:	PerlDL documentation package
@@ -80,7 +82,7 @@ scientific and numeric analysis.
 This is the documentation package.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 %patch0 -p1 -b .format
 %patch1 -p1 -b .pic
 %patch2 -p1 -b .vendor
@@ -127,4 +129,3 @@ rm -rf %{buildroot}
 %doc COPYING
 %{perl_vendorarch}/PDL/*.pod
 %{perl_vendorarch}/PDL/HtmlDocs
-
