@@ -28,7 +28,7 @@ BuildRequires:	MesaGLU-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
-BuildRequires:  perl(OpenL)
+BuildRequires:  perl(OpenGL)
 BuildRequires:	X11-devel
 
 # mess installed files perms
