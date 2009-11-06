@@ -28,7 +28,9 @@ BuildRequires:	MesaGLU-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
+BuildRequires:  perl(OpenL)
 BuildRequires:	X11-devel
+
 # mess installed files perms
 # http://rt.cpan.org/Ticket/Display.html?id=40976
 BuildConflicts: perl-ExtUtils-Install
