@@ -1,5 +1,5 @@
 %define	upstream_name	 PDL
-%define	upstream_version 2.4.4
+%define upstream_version 2.4.5
 
 %define Werror_cflags %nil
 %define _provides_exceptions perl(Inline)
