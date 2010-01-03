@@ -31,9 +31,6 @@ BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
 BuildRequires:  perl(OpenGL)
 BuildRequires:	X11-devel
 
-# mess installed files perms
-# http://rt.cpan.org/Ticket/Display.html?id=40976
-BuildConflicts: perl-ExtUtils-Install
 # if installed, requires f2c-devel,
 # but it is a contrib package
 BuildConflicts: f2c
