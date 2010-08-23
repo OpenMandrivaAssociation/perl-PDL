@@ -1,5 +1,5 @@
 %define	upstream_name	 PDL
-%define upstream_version 2.4.6
+%define upstream_version 2.4.7
 
 %define Werror_cflags %nil
 %define _provides_exceptions perl(Inline)
@@ -7,7 +7,7 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Release:    %mkrel 1
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
@@ -16,7 +16,6 @@ Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{upstream_name}/
 Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{upstream_name}-%{upstream_version}.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
-Patch0:		PDL-2.4.4-fix-format-errors.patch
 Patch1:		PDL-2.4.4-fpic.patch
 Patch2:		PDL-2.4.4-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
@@ -82,14 +81,13 @@ This is the documentation package.
 
 %prep
 %setup -q -n %{upstream_name}-%{upstream_version}
-%patch0 -p1 -b .format
 %patch1 -p1 -b .pic
 %patch2 -p1 -b .vendor
 %patch4 -p0 -b .gimp
 %patch5 -p0 -b .mm
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor PREFIX=%{_prefix} OPTIMIZE="%{optflags}"
+echo | %{__perl} Makefile.PL INSTALLDIRS=vendor PREFIX=%{_prefix} OPTIMIZE="%{optflags}"
 make
 #DISPLAY="" make test
 
