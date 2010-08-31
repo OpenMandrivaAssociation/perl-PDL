@@ -7,7 +7,7 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 1
+Release:    %mkrel 2
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
@@ -111,7 +111,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc COPYING Changes DEPENDENCIES Known_problems
-%doc README DEVELOPMENT INSTALL TODO BUGS
+%doc README DEVELOPMENT INSTALL TODO BUGS META.yml
 %{_bindir}/*
 %{_mandir}/*/*
 %{perl_vendorarch}/PDL.pm
