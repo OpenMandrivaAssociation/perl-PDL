@@ -23,12 +23,19 @@ Patch5:		PDL-2.4.2-makemakerfix.patch
 
 BuildRequires:	gcc-gfortran
 BuildRequires:	libgsl-devel
-BuildRequires:	MesaGLU-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	mesaglut-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
 BuildRequires:  perl(OpenGL)
-BuildRequires:	X11-devel
+BuildRequires:	libx11-devel
+BuildRequires:	libxext-devel
+BuildRequires:	libxi-devel
+Buildrequires:	libxmu-devel
+BuildRequires:	gd-devel
+BuildRequires:	libice-devel
+BuildRequires:	jpeg-devel
+BuildRequires:	fftw2-devel
+BuildRequires:	zlib-devel
 
 # if installed, requires f2c-devel,
 # but it is a contrib package
