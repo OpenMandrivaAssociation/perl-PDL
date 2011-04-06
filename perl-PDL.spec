@@ -34,7 +34,7 @@ Buildrequires:	libxmu-devel
 BuildRequires:	gd-devel
 BuildRequires:	libice-devel
 BuildRequires:	jpeg-devel
-BuildRequires:	fftw2-devel
+#BuildRequires:	fftw2-devel
 BuildRequires:	zlib-devel
 
 # if installed, requires f2c-devel,
