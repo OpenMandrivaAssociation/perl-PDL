@@ -1,5 +1,5 @@
 %define	upstream_name	 PDL
-%define upstream_version 2.4.7
+%define upstream_version 2.4.8
 
 %define Werror_cflags %nil
 %define _provides_exceptions perl(Inline)
@@ -7,7 +7,7 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Release:    %mkrel 1
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
