@@ -1,5 +1,5 @@
 %define	upstream_name	 PDL
-%define upstream_version 2.4.8
+%define upstream_version 2.4.9
 
 %define Werror_cflags %nil
 %define _provides_exceptions perl(Inline)
@@ -36,7 +36,7 @@ BuildRequires:	libice-devel
 BuildRequires:	jpeg-devel
 #BuildRequires:	fftw2-devel
 BuildRequires:	zlib-devel
-
+BuildRequires:	netcdf-devel
 # if installed, requires f2c-devel,
 # but it is a contrib package
 BuildConflicts: f2c
