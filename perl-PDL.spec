@@ -7,14 +7,14 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 3
+Release:    %mkrel 4.1
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
 License:	GPL
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{upstream_name}/
-Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{upstream_name}-%{upstream_version}.tar.gz
+Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{upstream_name}-%{upstream_version}_995.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
 Patch1:		PDL-2.4.4-fpic.patch
 Patch2:		PDL-2.4.4-handle-INSTALLDIRS-vendor.patch
@@ -87,7 +87,7 @@ scientific and numeric analysis.
 This is the documentation package.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{upstream_version}_995
 %patch1 -p1 -b .pic
 %patch2 -p1 -b .vendor
 %patch4 -p0 -b .gimp
