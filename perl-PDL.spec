@@ -23,7 +23,7 @@ Patch5:		PDL-2.4.2-makemakerfix.patch
 
 BuildRequires:	gcc-gfortran
 BuildRequires:	libgsl-devel
-BuildRequires:	mesaglut-devel
+BuildRequires:	libmesaglut-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
 BuildRequires:  perl(OpenGL)
