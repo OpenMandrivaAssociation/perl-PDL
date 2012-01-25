@@ -7,7 +7,7 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 4.1
+Release:	4.2
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
