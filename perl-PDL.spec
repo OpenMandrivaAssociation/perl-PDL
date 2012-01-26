@@ -1,63 +1,68 @@
-%define	upstream_name	 PDL
-%define upstream_version 2.4.9
+%define	module	PDL
+%define	upstream_version 2.4.9
 
 %define Werror_cflags %nil
 %define _provides_exceptions perl(Inline)
 %define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\))
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:	4.2
+Name:		perl-%{module}
+Version:	%perl_convert_version %{upstream_version}
+Release:	5
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
 License:	GPL
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{upstream_name}/
-Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{upstream_name}-%{upstream_version}_995.tar.gz
+Url:		http://search.cpan.org/dist/%{module}/
+Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modules/by-module/PDL/%{module}-%{upstream_version}_995.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
 Patch1:		PDL-2.4.4-fpic.patch
 Patch2:		PDL-2.4.4-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
 Patch5:		PDL-2.4.2-makemakerfix.patch
 
+BuildRequires:	perl(Astro::FITS::Header)
+BuildRequires:	perl(Convert::UU)
+BuildRequires:	perl(Data::Dumper) >= 2.121.0
+BuildRequires:	perl(ExtUtils::MakeMaker)
+BuildRequires:	perl(File::Spec) >= 0.600.0
+BuildRequires:	perl(File::Temp)
+BuildRequires:	perl(Filter::Util::Call)
+BuildRequires:	perl(Inline) >= 0.430.0
+BuildRequires:	perl(OpenGL) >= 0.630.0
+BuildRequires:	perl(Pod::Parser)
+BuildRequires:	perl(Pod::Select)
+BuildRequires:	perl(Storable) >= 1.30.0
+BuildRequires:	perl(Text::Balanced)
 BuildRequires:	gcc-gfortran
 BuildRequires:	libgsl-devel
-BuildRequires:	libmesaglut-devel
+BuildRequires:	mesaglu-devel
+BuildRequires:	freeglut-devel
+BuildRequires:	ncurses-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
-BuildRequires:  perl(OpenGL)
 BuildRequires:	libx11-devel
 BuildRequires:	libxext-devel
 BuildRequires:	libxi-devel
-Buildrequires:	libxmu-devel
-BuildRequires:	gd-devel
-BuildRequires:	libice-devel
-BuildRequires:	jpeg-devel
-#BuildRequires:	fftw2-devel
-BuildRequires:	zlib-devel
-BuildRequires:	netcdf-devel
+BuildRequires:	libxmu-devel
 # if installed, requires f2c-devel,
 # but it is a contrib package
-BuildConflicts: f2c
+BuildConflicts:	f2c
 
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}
+Provides:	perl(PDL::PP::CType)  
+Provides:	perl(PDL::PP::Dims)  
+Provides:	perl(PDL::PP::PDLCode)
+Provides:	perl(PDL::PP::SymTab)
+Provides:	perl(PDL::PP::XS)
+Provides:	perl(PDL::Config)
+Provides:	perl(PDL::Graphics::OpenGL)
+Provides:	perl(PDL::Graphics::OpenGLQ)
+Provides:	perl(PDL::Graphics::TriD::GL)
+Provides:	perl(PDL::Graphics::TriD::Objects)
+Provides:	perl(PDL::Lite)
+Provides:	perl(PDL::LiteF)
 
-Provides:       perl(PDL::PP::CType)  
-Provides:       perl(PDL::PP::Dims)  
-Provides:       perl(PDL::PP::PDLCode)
-Provides:       perl(PDL::PP::SymTab)
-Provides:       perl(PDL::PP::XS)
-Provides:       perl(PDL::Config)
-Provides:       perl(PDL::Graphics::OpenGL)
-Provides:       perl(PDL::Graphics::OpenGLQ)
-Provides:       perl(PDL::Graphics::TriD::GL)
-Provides:       perl(PDL::Graphics::TriD::Objects)
-Provides:       perl(PDL::Lite)
-Provides:       perl(PDL::LiteF)
-
-Obsoletes:	PDL
-Provides:	PDL
+%rename		PDL
 
 %package	doc
 Summary:	PerlDL documentation package
@@ -87,14 +92,14 @@ scientific and numeric analysis.
 This is the documentation package.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}_995
+%setup -q -n %{module}-%{upstream_version}_995
 %patch1 -p1 -b .pic
 %patch2 -p1 -b .vendor
 %patch4 -p0 -b .gimp
 %patch5 -p0 -b .mm
 
 %build
-echo | %{__perl} Makefile.PL INSTALLDIRS=vendor PREFIX=%{_prefix} OPTIMIZE="%{optflags}"
+echo | %{__perl} Makefile.PL INSTALLDIRS=vendor PREFIX=%{_prefix} OPTIMIZE="%{optflags} -fpermissive"
 
 # -Wformat -Werror=format-security is inherited from something, remove it.
 # note. it builds just fine on a real system but NOT in the build system. it gives:
@@ -115,7 +120,6 @@ make doctest
 # 
 
 %install
-rm -rf %{buildroot}
 %makeinstall PREFIX="%{buildroot}/%{_prefix}"
 
 # create /usr/bin if it doesn't already exist
@@ -124,11 +128,7 @@ rm -rf %{buildroot}
 # fix installed documentation
 %{__bzip2} -dc %{SOURCE1} | %{__perl} - "%{buildroot}"
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc COPYING Changes DEPENDENCIES Known_problems
 %doc README DEVELOPMENT INSTALL TODO BUGS META.yml
 %{_bindir}/*
@@ -141,7 +141,6 @@ rm -rf %{buildroot}
 %exclude %{perl_vendorarch}/PDL/HtmlDocs
 
 %files doc
-%defattr(-,root,root)
 %doc COPYING
 %{perl_vendorarch}/PDL/*.pod
 %{perl_vendorarch}/PDL/HtmlDocs
