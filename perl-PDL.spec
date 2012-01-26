@@ -37,7 +37,7 @@ BuildRequires:	perl(Text::Balanced)
 BuildRequires:	gcc-gfortran
 BuildRequires:	libgsl-devel
 BuildRequires:	mesaglu-devel
-BuildRequires:	freeglut-devel
+BuildRequires:	pkgconfig(glut)
 BuildRequires:	ncurses-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils_F77 >= 1.14-11mdk
