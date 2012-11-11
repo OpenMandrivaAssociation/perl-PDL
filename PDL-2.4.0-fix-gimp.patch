@@ -1,0 +1,11 @@
+--- ./Basic/Core/Dev.pm.tv	2003-06-26 01:35:41.000000000 +0200
++++ ./Basic/Core/Dev.pm	2003-06-26 01:36:04.000000000 +0200
+@@ -106,7 +106,7 @@
+ sub whereami_inst {
+    for $dir (@INC,map {$_."/blib"} qw|. .. ../.. ../../.. ../../../..|) {
+       return ($_[0] ? $dir . '/PDL' : $dir)
+-	if -e "$dir/PDL/Core/Dev.pm";
++	if -e "$dir/PDL/Core/Dev.pm" || -e "$dir/PDL/Core/Dev.pm.gz";
+    }
+    die "Unable to determine INSTALLED directory path to PDL::Core::Dev module\n"
+     if !$_[0];

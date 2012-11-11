@@ -1,0 +1,12 @@
+diff -Naur --exclude '*~' --exclude '*.orig' PDL-2.4.4/Lib/Slatec/Makefile.PL PDL-2.4.4-fpic/Lib/Slatec/Makefile.PL
+--- PDL-2.4.4/Lib/Slatec/Makefile.PL	2008-11-13 05:14:02.000000000 +0100
++++ PDL-2.4.4-fpic/Lib/Slatec/Makefile.PL	2009-05-19 20:47:59.000000000 +0200
+@@ -132,7 +132,7 @@
+ 
+ sub MY::postamble {
+         $mycompiler     = $f77->compiler();
+-        $mycflags       = $f77->cflags();
++        $mycflags       = $f77->cflags() . " -fPIC";
+ 	my $orig = pdlpp_postamble_int(@::pack);
+ 	$hack_64bit = ($Config{archname}=~m/x86_64/ ?" -fPIC " : "");
+ 	$orig =~ s/:\s*slatec\.pd/: slatec.pd/;
