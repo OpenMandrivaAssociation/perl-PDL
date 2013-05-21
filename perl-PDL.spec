@@ -12,7 +12,7 @@
 
 Name:		perl-%{module}
 Version:	%perl_convert_version %{upstream_version}
-Release:	11
+Release:	12
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
