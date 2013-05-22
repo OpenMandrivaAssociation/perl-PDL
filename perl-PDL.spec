@@ -12,7 +12,7 @@
 
 Name:		perl-%{module}
 Version:	%perl_convert_version %{upstream_version}
-Release:	12
+Release:	13
 Epoch:		1
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
@@ -41,7 +41,7 @@ BuildRequires:	perl(Pod::Select)
 BuildRequires:	perl(Storable) >= 1.30.0
 BuildRequires:	perl(Text::Balanced)
 BuildRequires:	gcc-gfortran
-BuildRequires:	libgsl-devel
+BuildRequires:	pkgconfig(gsl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(ncurses)
