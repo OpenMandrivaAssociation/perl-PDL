@@ -20,6 +20,7 @@ Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{modname}/
 Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modnames/by-modname/PDL/%{modname}-%{modver}.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
+Source100:	%{name}.rpmlintrc
 Patch1:		PDL-2.4.4-fpic.patch
 Patch2:		PDL-2.4.4-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
@@ -118,12 +119,8 @@ find Makefile | xargs perl -pi -e "s|-Werror=format-security||g"
 make
 #DISPLAY="" make test
 
-# first generate blib/lib/PDL/pdldoc.db
-make doctest
-# 
-
 %install
-%makeinstall_std
+make install PREFIX="%{buildroot}/%{_prefix}"
 
 # create /usr/bin if it doesn't already exist
 mkdir -p %{buildroot}%{_bindir}
@@ -133,7 +130,7 @@ bzip2 -dc %{SOURCE1} | %__perl - "%{buildroot}"
 
 %files
 %doc COPYING Changes DEPENDENCIES Known_problems
-%doc README DEVELOPMENT INSTALL TODO BUGS META.yml
+%doc README DEVELOPMENT INSTALL TODO META.yml
 %{_bindir}/*
 %{perl_vendorarch}/PDL.pm
 %{perl_vendorarch}/PDL
