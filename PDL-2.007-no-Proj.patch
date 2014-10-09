@@ -1,0 +1,22 @@
+--- ./Lib/Transform/Makefile.PL.proj	2013-05-12 23:09:47.000000000 +0300
++++ ./Lib/Transform/Makefile.PL	2014-01-17 20:42:33.315014187 +0200
+@@ -2,7 +2,7 @@
+ 
+ @pack = (["transform.pd",Transform,PDL::Transform]);
+ %hash = pdlpp_stdargs_int(@::pack);
+-$hash{DIR} = ['Cartography', 'Proj4'];
++$hash{DIR} = ['Cartography'];
+ 
+ WriteMakefile( %hash );
+ 
+--- ./Lib/Makefile.PL.proj	2014-01-17 20:42:33.315014187 +0200
++++ ./Lib/Makefile.PL	2014-01-17 20:44:34.106541943 +0200
+@@ -7,7 +7,7 @@
+ 	      'NAME' => 'PDL::Lib',
+ 	      VERSION_FROM => '../Basic/Core/Version.pm',
+ 	      DIR =>  [ qw/Opt ImageRGB Fit FFT Filter Image2D ImageND
+-			CallExt Slatec GSL GIS Transform Minuit Compression
++			CallExt Slatec GSL Transform Minuit Compression
+ 			/ ],
+     (eval ($ExtUtils::MakeMaker::VERSION) >= 6.57_02 ? ('NO_MYMETA' => 1) : ()),
+ #			Interpolate
