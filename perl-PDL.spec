@@ -7,14 +7,14 @@
 %define __noautoreq 'perl\\(PDL\\)|perl\\(PGPLOT\\)|perl\\(Inline\\)|perl\\(Devel::REPL::Plugin\\)|perl\\(OpenGL::Config\\)|perl\\(Win32::DDE::Client\\)'
 %else
 %define _provides_exceptions perl(Inline)
-%define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\))
+%define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\|Module::Compile\\|PDL::Demos::Screen\\|PDL::Graphics::Gnuplot\\|Prima::MsgBox\\))
 %endif
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
 Name:		perl-%{modname}
 Epoch:		1
 Version:	%perl_convert_version %{modver}
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{modname}/
