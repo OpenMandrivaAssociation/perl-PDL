@@ -1,5 +1,5 @@
 %define	modname	PDL
-%define	modver	2.4.9
+%define	modver	2.007
 
 %define Werror_cflags %nil
 %if %{_use_internal_dependency_generator}
@@ -14,16 +14,17 @@ Summary:	PerlDL, an efficient numerical language for scientific computing
 Name:		perl-%{modname}
 Epoch:		1
 Version:	%perl_convert_version %{modver}
-Release:	20
+Release:	1
 License:	GPLv2
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{modname}/
-Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modnames/by-modname/PDL/%{modname}-%{modver}_995.tar.gz
+Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modnames/by-modname/PDL/%{modname}-%{modver}.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
 Patch1:		PDL-2.4.4-fpic.patch
 Patch2:		PDL-2.4.4-handle-INSTALLDIRS-vendor.patch
 Patch4:		PDL-2.4.0-fix-gimp.patch
 Patch5:		PDL-2.4.2-makemakerfix.patch
+Patch6:		PDL-2.007-no-Proj.patch
 BuildRequires:	perl(Astro::FITS::Header)
 BuildRequires:	perl(Convert::UU)
 BuildRequires:	perl(Data::Dumper) >= 2.121.0
@@ -93,11 +94,12 @@ scientific and numeric analysis.
 This is the documentation package.
 
 %prep
-%setup -qn %{modname}-%{modver}_995
+%setup -qn %{modname}-%{modver}
 %patch1 -p1 -b .pic
 %patch2 -p1 -b .vendor
 %patch4 -p0 -b .gimp
 %patch5 -p0 -b .mm
+%patch6 -p1 -b .proj
 
 %build
 echo | %__perl Makefile.PL INSTALLDIRS=vendor PREFIX=%{_prefix} OPTIMIZE="%{optflags} -fpermissive"
@@ -121,7 +123,7 @@ make doctest
 # 
 
 %install
-%makeinstall PREFIX="%{buildroot}/%{_prefix}"
+%makeinstall_std
 
 # create /usr/bin if it doesn't already exist
 mkdir -p %{buildroot}%{_bindir}
