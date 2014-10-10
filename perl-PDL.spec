@@ -4,7 +4,7 @@
 %define Werror_cflags %nil
 %if %{_use_internal_dependency_generator}
 %define __noautoprov 'perl\\(Inline\\)'
-%define __noautoreq 'perl\\(PDL\\)|perl\\(PGPLOT\\)|perl\\(Inline\\)|perl\\(Devel::REPL::Plugin\\)|perl\\(OpenGL::Config\\)|perl\\(Win32::DDE::Client\\)'
+%define __noautoreq 'perl\\(PDL\\)|perl\\(PGPLOT\\)|perl\\(Inline\\)|perl\\(Devel::REPL::Plugin\\)|perl\\(OpenGL::Config\\)|perl\\(Win32::DDE::Client\\)|perl\\(Module::Compile\\)|perl\\(PDL::Demos::Screen\\)|perl\\(PDL::Graphics::Gnuplot\\)|perl\\(Prima::MsgBox\\)'
 %else
 %define _provides_exceptions perl(Inline)
 %define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\|Module::Compile\\|PDL::Demos::Screen\\|PDL::Graphics::Gnuplot\\|Prima::MsgBox\\))
