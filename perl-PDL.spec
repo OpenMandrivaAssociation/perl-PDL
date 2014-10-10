@@ -14,7 +14,7 @@ Summary:	PerlDL, an efficient numerical language for scientific computing
 Name:		perl-%{modname}
 Epoch:		1
 Version:	%perl_convert_version %{modver}
-Release:	2
+Release:	3
 License:	GPLv2
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{modname}/
