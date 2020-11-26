@@ -1,20 +1,22 @@
 %define	modname	PDL
-%define	modver	2.007
+%define	modver	2.025
 
 %define Werror_cflags %nil
-%if %{_use_internal_dependency_generator}
-%define __noautoprov 'perl\\(Inline\\)'
-%define __noautoreq 'perl\\(PDL\\)|perl\\(PGPLOT\\)|perl\\(Inline\\)|perl\\(Devel::REPL::Plugin\\)|perl\\(OpenGL::Config\\)|perl\\(Win32::DDE::Client\\)|perl\\(Module::Compile\\)|perl\\(PDL::Demos::Screen\\)|perl\\(PDL::Graphics::Gnuplot\\)|perl\\(Prima::MsgBox\\)'
-%else
-%define _provides_exceptions perl(Inline)
-%define _requires_exceptions perl(\\(PDL\\|PGPLOT\\|Inline\\|Module::Compile\\|PDL::Demos::Screen\\|PDL::Graphics::Gnuplot\\|Prima::MsgBox\\))
-%endif
+# From Fedora:
+%{?perl_default_filter}
+%global __requires_exclude %{?__requires_exclude:%__requires_exclude|}^perl\\((OpenGL::Config|PDL::Demos::Screen|PDL::Graphics::PGPLOT|PDL::Graphics::PGPLOT::Window|Tk|Win32::DDE::Client)\\)$
+%global __provides_exclude %{?__provides_exclude:%__provides_exclude|}^perl\\(Inline\\)$
+%global __provides_exclude %__provides_exclude|^perl\\(Win32.*\\)$
+# Remove under-specified dependencies
+%global __requires_exclude %{?__requires_exclude:%__requires_exclude|}^perl\\((Data::Dumper|File::Spec|Filter::Simple|Inline|Module::Compile|OpenGL|Text::Balanced)\\)$
+# Mageia:
+%global __requires_exclude %{?__requires_exclude:%__requires_exclude|}^perl\\((Prima[A-Za-z:_]*)\\)$
 
 Summary:	PerlDL, an efficient numerical language for scientific computing
 Name:		perl-%{modname}
 Epoch:		1
 Version:	%perl_convert_version %{modver}
-Release:	6
+Release:	1
 License:	GPLv2
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{modname}/
@@ -120,7 +122,7 @@ make
 #DISPLAY="" make test
 
 %install
-make install PREFIX="%{buildroot}/%{_prefix}"
+%make_install PREFIX="%{buildroot}/%{_prefix}"
 
 # create /usr/bin if it doesn't already exist
 mkdir -p %{buildroot}%{_bindir}
