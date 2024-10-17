@@ -19,7 +19,7 @@ Version:	%perl_convert_version %{modver}
 Release:	1
 License:	GPLv2
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{modname}/
+Url:		https://search.cpan.org/dist/%{modname}/
 Source0:	ftp://ftp.cpan.org/pub/perl/CPAN/modnames/by-modname/PDL/%{modname}-%{modver}.tar.gz
 Source1:	PDL-convert-doc.pl.bz2
 Source100:	%{name}.rpmlintrc
